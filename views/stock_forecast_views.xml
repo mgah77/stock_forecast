@@ -1,18 +1,19 @@
 <odoo>
 
 
-    <record id="view_product_forecast_tree" model="ir.ui.view">
-        <field name="name">product.forecast.tree</field>
-        <field name="model">product.product</field>
-        <field name="arch" type="xml">
-            <tree string="Product Forecast">
-                <field name="name"/>
-                <field name="qty_available"/>
-                <field name="average_monthly_sale"/>
-                <field name="estimated_exhaustion_month"/>
-            </tree>
-        </field>
-    </record>
+<record id="view_product_forecast_tree" model="ir.ui.view">
+    <field name="name">product.forecast.tree</field>
+    <field name="model">product.product</field>
+    <field name="arch" type="xml">
+        <tree string="Product Forecast">
+            <field name="name"/>
+            <field name="qty_available"/>
+            <field name="average_monthly_sale"/>
+            <field name="estimated_exhaustion_month"/>
+            <filter name="filter_available" string="Con Stock" domain="[('qty_available', '>', 0)]"/>
+        </tree>
+    </field>
+</record>
 
     
     <record id="action_stock_forecast" model="ir.actions.act_window">
