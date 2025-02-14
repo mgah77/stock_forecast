@@ -13,10 +13,10 @@ class ProductProduct(models.Model):
             moves = self.env['stock.move'].search([
                 ('product_id', '=', product.id),
                 ('state', '=', 'done'),
-                ('date', '>=', fields.Date.today() - timedelta(days=365))
+                ('date', '>=', fields.Date.today() - timedelta(days=183))
             ])
             total_sold = sum(moves.mapped('product_uom_qty'))
-            product.average_monthly_sale = total_sold / 12
+            product.average_monthly_sale = total_sold / 6
 
     @api.depends('qty_available', 'average_monthly_sale')
     def _compute_estimated_exhaustion_month(self):
