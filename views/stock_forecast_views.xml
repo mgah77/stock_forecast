@@ -27,7 +27,7 @@
     </field>
 </record>
 
-    <menuitem id="menu_stock_forecast" name="Stock Forecast" parent="stock.menu_stock_root"/>
+    <menuitem id="menu_stock_forecast" name="Analisis" parent="stock.menu_stock_root"/>
 
-    <menuitem id="menu_stock_forecast_action" name="Stock Forecast" parent="menu_stock_forecast" action="action_stock_forecast"/>
+    <menuitem id="menu_stock_forecast_action" name="Agotamiento de Stock" parent="menu_stock_forecast" action="action_stock_forecast"/>
 </odoo>
