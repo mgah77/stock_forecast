@@ -7,11 +7,14 @@
                 <field name="name"/>
                 <field name="qty_available"/>
                 <field name="average_monthly_sale"/>
-                <field name="estimated_exhaustion_month" options="{'format': 'MMMM YYYY'}"/>
+                <field name="estimated_exhaustion_month_display" string="Mes de Agotamiento"/>  <!-- Campo de solo lectura -->
+                <field name="estimated_exhaustion_month" invisible="1"/>  <!-- Campo oculto para ordenamiento -->
                 <filter name="filter_available" string="Con Stock" domain="[('qty_available', '>', 0)]"/>
             </tree>
         </field>
     </record>
+
+    <menuitem id="menu_stock_forecast" name="Stock Forecast" parent="stock.menu_stock_root"/>
 
     <record id="action_stock_forecast" model="ir.actions.act_window">
         <field name="name">Stock Forecast</field>
@@ -24,10 +27,6 @@
             <p class="o_view_nocontent_smiling_face">No products found.</p>
         </field>
     </record>
-
-    <menuitem id="menu_stock_forecast" name="Stock Forecast" parent="stock.menu_stock_root"/>
-
-
 
     <menuitem id="menu_stock_forecast_action" name="Stock Forecast" parent="menu_stock_forecast" action="action_stock_forecast"/>
 </odoo>
