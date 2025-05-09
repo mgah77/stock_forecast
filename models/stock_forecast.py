@@ -6,7 +6,7 @@ class ProductProduct(models.Model):
 
     average_monthly_sale = fields.Float(string='Promedio de Venta Mensual', compute='_compute_average_monthly_sale', store=True)
     estimated_exhaustion_month = fields.Char(string='Mes Aproximado de Agotamiento', compute='_compute_estimated_exhaustion_month', store=True)
-    estimated_month = fields.Datetime(string='Mes', compute='_compute_estimated_exhaustion_month', store=True)
+    estimated_month = fields.Date(string='Mes', compute='_compute_estimated_exhaustion_month', store=True)
 
     @api.depends('stock_move_ids')
     def _compute_average_monthly_sale(self):
