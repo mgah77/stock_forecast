@@ -24,7 +24,7 @@ class ProductProduct(models.Model):
         for product in self:
             if product.qty_available > 0 and product.average_monthly_sale > 0:
                 months_left = product.qty_available / product.average_monthly_sale
-                estimated_date = datetime.now() + timedelta(days=months_left * 30)
+                estimated_date = datetime.today() + timedelta(days=months_left * 30)
                 product.estimated_month = estimated_date.replace(day=1).date()
                 product.estimated_exhaustion_month = estimated_date.strftime('%B %Y')
             else:
