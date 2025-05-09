@@ -18,14 +18,19 @@ class ProductProduct(models.Model):
             ])
             total_sold = sum(moves.mapped('product_uom_qty'))
             product.average_monthly_sale = total_sold / 6
-
+            
     @api.depends('qty_available', 'average_monthly_sale')
     def _compute_estimated_exhaustion_month(self):
         for product in self:
             if product.qty_available > 0 and product.average_monthly_sale > 0:
                 months_left = product.qty_available / product.average_monthly_sale
                 estimated_date = datetime.today() + timedelta(days=months_left * 30)
-                product.estimated_month = estimated_date.replace(day=1).date()
-                product.estimated_exhaustion_month = estimated_date.strftime('%B %Y')
+
+                # Asegura que sea el primer día del mes y tipo date
+                first_day = fields.Date.to_date(datetime(estimated_date.year, estimated_date.month, 1))
+
+                product.estimated_month = first_day
+                product.estimated_exhaustion_month = first_day.strftime('%m-%Y')
             else:
+                product.estimated_month = False
                 product.estimated_exhaustion_month = 'N/A'
