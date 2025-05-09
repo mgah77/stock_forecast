@@ -1,6 +1,5 @@
 <odoo>
 
-
     <record id="view_product_forecast_tree" model="ir.ui.view">
         <field name="name">product.forecast.tree</field>
         <field name="model">product.product</field>
@@ -9,23 +8,22 @@
                 <field name="name"/>
                 <field name="qty_available"/>
                 <field name="average_monthly_sale"/>
-                <field name="estimated_exhaustion_month"/>
+                <field name="estimated_exhaustion_month" widget="date" options="{'format': 'MMMM yyyy'}"/>
             </tree>
         </field>
     </record>
 
-    
-<record id="action_stock_forecast" model="ir.actions.act_window">
-    <field name="name">Stock Forecast</field>
-    <field name="res_model">product.product</field>
-    <field name="view_mode">tree,form</field>
-    <field name="view_id" ref="view_product_forecast_tree"/>
-    <field name="context">{'search_default_filter_available': 1}</field>
-    <field name="domain">[('qty_available', '>', 0)]</field> <!-- Filtro para mostrar solo productos con stock -->
-    <field name="help" type="html">
-        <p class="o_view_nocontent_smiling_face">No products found.</p>
-    </field>
-</record>
+    <record id="action_stock_forecast" model="ir.actions.act_window">
+        <field name="name">Stock Forecast</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_product_forecast_tree"/>
+        <field name="context">{'search_default_filter_available': 1}</field>
+        <field name="domain">[('qty_available', '>', 0)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No products found.</p>
+        </field>
+    </record>
 
     <menuitem id="menu_stock_forecast" name="Analisis" parent="stock.menu_stock_root"/>
 
