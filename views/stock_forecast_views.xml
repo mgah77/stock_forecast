@@ -10,6 +10,7 @@
                 <field name="qty_available"/>
                 <field name="average_monthly_sale"/>
                 <field name="estimated_exhaustion_month"/>
+                <field name="estimated_month"/>
             </tree>
         </field>
     </record>
